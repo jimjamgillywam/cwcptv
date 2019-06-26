@@ -1,6 +1,5 @@
 
 
-
 <!doctype html>
 <html lang="en" class="m-0 h-100">
 <head>
@@ -14,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.min.css" />
-    <link rel="stylesheet" href="./base.css"/>
+    <link rel="stylesheet" href="/static/css/base.css"/>
 
 
 
@@ -36,14 +35,31 @@
     <div class="d-flex flex-column flex-grow-1">
         <div class="container flex-grow-1 content-container">
             
+    <div class="d-flex flex-row justify-content-around flex-wrap mb-4">
+        <a href="./AFG">AFG</a>
+        <a href="./AUS">AUS</a>
+        <a href="./BAN">BAN</a>
+        <a href="./ENG">ENG</a>
+        <a href="./IND">IND</a>
+        <a href="./NZ">NZ</a>
+        <a href="./PAK">PAK</a>
+        <a href="./SA">SA</a>
+        <a href="./SL">SL</a>
+        <a href="./WI">WI</a>
+    </div>
     <h1>Path To Qualification IND</h1>
 
-    <p>Show a team's path to qualification. Green means the team qualifies, yellow means NRR determines qualification, red means
-        not qualified and a white box means more results are needed. Click the buttons below to set the result of certain games to reduce the complexity of the tree.
-        I've tried to optimise the tree for depth, but the optimisation is very rudimentary and may not be pefect.</p>
+    <p>Shows a team's path to qualification. Green means the team qualifies, yellow means NRR determines qualification,
+        red means
+        not qualified and a white box means more results are needed. Click the buttons below to set the result of
+        certain games to reduce the complexity of the tree.
+        I've tried to optimise the tree for depth, but the optimisation is very rudimentary and may not be pefect.
+        Inspired by this <a
+                href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/11/02/us/politics/paths-to-the-white-house.html?utm_campaign=Feed%253A+NerdcoreRSS2+%2528Nerdcore%2529&utm_medium=feed&utm_source=feedburner">NYTimes</a>
+        article from years ago.</p>
 
-    <h5>Set match results</h5>
-    <div class="d-flex flex-row justify-content-around flex-wrap">
+    <h4>Set match results</h4>
+    <div class="d-flex flex-row justify-content-around flex-wrap my-4">
         
             <div class="my-1 mx-2">
                 <button class="btn btn-sm btn-light mr-0" id="res-0-0">NZ</button>
@@ -112,7 +128,7 @@
         
 
     </div>
-    <h5>Chart</h5>
+    <h4>Chart</h4>
     <div id="svg-container"></div>
 
 
@@ -464,7 +480,7 @@
         }
 
 
-        d3.json("./json/india.json").then(function (treeData) {
+        d3.json("./json/IND.json").then(function (treeData) {
 
                 data = treeData
                 // Assigns parent, children, height, depth

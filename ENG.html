@@ -1,0 +1,530 @@
+
+
+<!doctype html>
+<html lang="en" class="m-0 h-100">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CWC Path to Qualification">
+    <meta name="author" content="Jimjam">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.min.css" />
+    <link rel="stylesheet" href="/static/css/base.css"/>
+
+
+
+    
+    
+
+    <title>Path To Vic</title>
+</head>
+<body class="m-0 h-100">
+
+<div class="d-flex flex-column h-100">
+    <nav class="bg-light sidebar">
+        <a class="sidebar-title notlink" href="/">
+            <div class="sidebar-title-text">jimjam</div>
+        </a>
+    </nav>
+
+
+    <div class="d-flex flex-column flex-grow-1">
+        <div class="container flex-grow-1 content-container">
+            
+    <div class="d-flex flex-row justify-content-around flex-wrap mb-4">
+        <a href="./AFG">AFG</a>
+        <a href="./AUS">AUS</a>
+        <a href="./BAN">BAN</a>
+        <a href="./ENG">ENG</a>
+        <a href="./IND">IND</a>
+        <a href="./NZ">NZ</a>
+        <a href="./PAK">PAK</a>
+        <a href="./SA">SA</a>
+        <a href="./SL">SL</a>
+        <a href="./WI">WI</a>
+    </div>
+    <h1>Path To Qualification ENG</h1>
+
+    <p>Shows a team's path to qualification. Green means the team qualifies, yellow means NRR determines qualification,
+        red means
+        not qualified and a white box means more results are needed. Click the buttons below to set the result of
+        certain games to reduce the complexity of the tree.
+        I've tried to optimise the tree for depth, but the optimisation is very rudimentary and may not be pefect.
+        Inspired by this <a
+                href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/11/02/us/politics/paths-to-the-white-house.html?utm_campaign=Feed%253A+NerdcoreRSS2+%2528Nerdcore%2529&utm_medium=feed&utm_source=feedburner">NYTimes</a>
+        article from years ago.</p>
+
+    <h4>Set match results</h4>
+    <div class="d-flex flex-row justify-content-around flex-wrap my-4">
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-0-0">NZ</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-0-1">PAK</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-1-0">WI</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-1-1">IND</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-2-0">SL</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-2-1">SA</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-3-0">PAK</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-3-1">AFG</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-4-0">NZ</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-4-1">AUS</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-5-0">ENG</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-5-1">IND</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-6-0">SL</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-6-1">WI</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-7-0">BAN</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-7-1">IND</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-8-0">ENG</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-8-1">NZ</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-9-0">AFG</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-9-1">WI</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-10-0">PAK</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-10-1">BAN</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-11-0">SL</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-11-1">IND</button>
+            </div>
+        
+            <div class="my-1 mx-2">
+                <button class="btn btn-sm btn-light mr-0" id="res-12-0">AUS</button>
+                <button class="btn btn-sm btn-light ml-0" id="res-12-1">SA</button>
+            </div>
+        
+
+    </div>
+    <h4>Chart</h4>
+    <div id="svg-container"></div>
+
+
+        </div>
+
+    <footer class="pt-4 border-top container">
+            <div class="row">
+                <div class="col-12 col-md text-right">
+                    <small class="d-block mb-3 text-muted">Jimjam &copy; 2019</small>
+                </div>
+            </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intercooler-js/1.2.2/intercooler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
+
+    <script>
+
+        var state = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+        var games = [['NZ', 'PAK'], ['WI', 'IND'], ['SL', 'SA'], ['PAK', 'AFG'], ['NZ', 'AUS'], ['ENG', 'IND'], ['SL', 'WI'], ['BAN', 'IND'], ['ENG', 'NZ'], ['AFG', 'WI'], ['PAK', 'BAN'], ['SL', 'IND'], ['AUS', 'SA']];
+
+
+        function generator(depth, index, friend) {
+            return function () {
+                var friendnode = d3.select(friend).node();
+                if (friendnode.classList.contains("active")) {
+                    //recursive_untoggle(data, depth);
+                    friendnode.classList.remove("active");
+                }
+                if (this.classList.contains("active")) {
+                    //recursive_untoggle(data, depth);
+                    this.classList.remove("active");
+                    state[depth] = -1;
+                } else {
+                    //recursive_toggle(data, depth, index);
+                    this.classList.add("active");
+                    state[depth] = index;
+                }
+
+                root = d3.hierarchy(data, function (d) {
+                    var node = d;
+                    while (true) {
+                        if (!node.children) {
+                            d.trueType = node.type;
+                            return []
+                        } else {
+                            var childDepth = node.children[0].game;
+                            if (state[childDepth] === -1) {
+                                return node.children
+                            } else {
+                                node = node.children[state[childDepth]];
+                            }
+                        }
+                    }
+                    return []
+                });
+                root.x0 = width / 2;
+                root.y0 = 0;
+
+                update(root)
+            };
+        }
+
+        for (var i = 0; i < 13; i++) {
+            d3.select("#res-" + i + "-0").on('click', generator(i, 0, "#res-" + i + "-1"));
+            d3.select("#res-" + i + "-1").on('click', generator(i, 1, "#res-" + i + "-0"));
+        }
+
+        var data = {};
+        var container = document.getElementById("svg-container");
+        var clientWidth = container.clientWidth
+        var margin = {top: 20, right: 90, bottom: 30, left: 90},
+            width = clientWidth - margin.left - margin.right,
+            height = 2000 - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        // appends a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+
+        var container = document.getElementById("svg-container");
+
+
+        var svgBase = d3.select("#svg-container").append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom);
+
+        var svg = svgBase
+            .append("g")
+            .attr("transform", "translate("
+                + margin.left + "," + margin.top + ")");
+
+        var svgOuter = svgBase
+            .append("g")
+            .attr("transform", "translate("
+                + 0 + "," + margin.top + ")");
+
+        var i = 0,
+            duration = 750,
+            spacing = 120,
+            root;
+
+        // declares a tree layout and assigns the size
+        var treemap = d3.cluster().size([width, height]);
+
+        function update(source) {
+
+            var activeGameIndices = []
+            root.eachBefore(function (node) {
+
+                if ('game' in node.data && activeGameIndices.indexOf(node.data.game) == -1) {
+                    activeGameIndices.push(node.data.game);
+                }
+            });
+
+            var gameData = []
+            for (var i = 0; i < activeGameIndices.length; i++) {
+                var index = activeGameIndices[i];
+                gameData.push({
+                    id: index,
+                    game: games[index]
+                });
+            }
+
+            var rows = svgOuter.selectAll('g.row')
+                .data(gameData, function (d) {
+                    return d.id
+                });
+
+            var rowGroups = rows.enter()
+                .append('g')
+                .attr('class', 'row')
+                .attr("transform", function (d, i) {
+                    return "translate(" + 0 + "," + ((i + 1) * spacing + 40) + ")";
+                });
+
+            rows.exit()
+                .remove('g');
+
+            rows.transition()
+                .attr("transform", function (d, i) {
+                    return "translate(" + 0 + "," + ((i + 1) * spacing + 40) + ")";
+                });
+
+            rowGroups.append('path')
+                .attr('class', 'rowlink')
+                .attr('d', function (d) {
+                    return `M 0 0 L ${width + margin.left + margin.right} 0`
+                });
+
+            rowGroups.append('text')
+                .attr("dy", ".35em")
+                .attr("y", "-20")
+                .attr("x", "0")
+                .text(function (d) {
+                    return d.game[0]
+                });
+
+            rowGroups.append('text')
+                .attr("text-anchor", "end")
+                .attr("dy", ".35em")
+                .attr("y", "-20")
+                .attr("x", width + margin.left + margin.right)
+                .text(function (d) {
+                    return d.game[1]
+                });
+
+
+            // Assigns the x and y position for the nodes
+            var treeData = treemap(root);
+
+            // Compute the new tree layout.
+            var nodes = treeData.descendants(),
+                links = treeData.descendants().slice(1);
+
+            // Normalize for fixed-depth.
+            nodes.forEach(function (d) {
+                d.y = (d.ancestors().length - 1) * spacing
+            });
+
+            // ****************** Nodes section ***************************
+
+            // Update the nodes...
+            var node = svg.selectAll('g.node')
+                .data(nodes, function (d) {
+                    return d.data.id;
+                });
+
+            // Enter any new modes at the parent's previous position.
+            var nodeEnter = node.enter().append('g')
+                .attr('class', 'node')
+                .attr("transform", function (d) {
+                    return "translate(" + source.x0 + "," + source.y0 + ")";
+                });
+            //.on('click', click);
+
+            // Add Circle for the nodes
+            nodeEnter.append('circle')
+                .attr('class', 'node')
+                .attr('r', 1e-6)
+                .style("fill", function (d) {
+                    if (d.data.trueType == "IN") {
+                        return '#0f0';
+                    } else if (d.data.trueType == "OUT") {
+                        return '#f00';
+                    } else if (d.data.trueType == "TIE") {
+                        return '#ff0'
+                    } else {
+                        return d._children ? "lightsteelblue" : "#f0f";
+                    }
+                });
+
+            // Add labels for the nodes
+            /*
+            nodeEnter.append('text')
+                .attr("dy", ".35em")
+                .attr("x", function (d) {
+                    return d.children || d._children ? -13 : 13;
+                })
+                .attr("text-anchor", function (d) {
+                    return d.children || d._children ? "end" : "start";
+                })
+                .text(function (d) {
+                    return d.data.name;
+                });
+
+             */
+
+            // UPDATE
+            var nodeUpdate = nodeEnter.merge(node);
+
+            // Transition to the proper position for the node
+            nodeUpdate.transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+
+            // Update the node attributes and style
+            nodeUpdate.select('circle.node')
+                .attr('r', function (d) {
+                    if (d.data.trueType === "IN" || d.data.trueType === "OUT" || d.data.trueType === "TIE") {
+                        return 10;
+                    } else {
+                        return 3;
+                    }
+                })
+                .style("fill", function (d) {
+                    if (d.data.trueType === "IN") {
+                        return '#0f0';
+                    } else if (d.data.trueType === "OUT") {
+                        return '#f00';
+                    } else if (d.data.trueType === "TIE") {
+                        return '#ff0'
+                    } else {
+                        return d._children ? "lightsteelblue" : "#fff";
+                    }
+                })
+                .attr('cursor', 'pointer');
+
+
+            // Remove any exiting nodes
+            var nodeExit = node.exit().transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + source.x + "," + source.y + ")";
+                })
+                .remove();
+
+            // On exit reduce the node circles size to 0
+            nodeExit.select('circle')
+                .attr('r', 1e-6);
+
+            // On exit reduce the opacity of text labels
+            nodeExit.select('text')
+                .style('fill-opacity', 1e-6);
+
+            // ****************** links section ***************************
+
+            // Update the links...
+            var link = svg.selectAll('path.link')
+                .data(links, function (d) {
+                    return d.data.id;
+                });
+
+            // Enter any new links at the parent's previous position.
+            var linkEnter = link.enter().insert('path', "g")
+                .attr("class", "link")
+                .attr('d', function (d) {
+                    var o = {x: source.x0, y: source.y0}
+                    return diagonal(o, o)
+                });
+
+            // UPDATE
+            var linkUpdate = linkEnter.merge(link);
+
+            // Transition back to the parent element position
+            linkUpdate.transition()
+                .duration(duration)
+                .attr('d', function (d) {
+                    return diagonal(d, d.parent)
+                });
+
+            // Remove any exiting links
+            var linkExit = link.exit().transition()
+                .duration(duration)
+                .attr('d', function (d) {
+                    var o = {x: source.x, y: source.y}
+                    return diagonal(o, o)
+                })
+                .remove();
+
+            // Store the old positions for transition.
+            nodes.forEach(function (d) {
+                d.x0 = d.x;
+                d.y0 = d.y;
+            });
+
+            // Creates a curved (diagonal) path from parent to the child nodes
+            function diagonal(s, d) {
+
+                path = `M ${s.x} ${s.y}
+            C
+              ${(s.x + d.x) / 2} ${d.y + 0.3 * (s.y - d.y)},
+                ${(s.x + d.x) / 2} ${d.y + 0.6 * (s.y - d.y)},
+              ${d.x} ${d.y}`
+
+                return path
+            }
+
+            // Toggle children on click.
+            function click(d) {
+                if (d.children) {
+                    d._children = d.children;
+                    d.children = null;
+                } else {
+                    d.children = d._children;
+                    d._children = null;
+                }
+                update(d);
+            }
+        }
+
+
+        d3.json("./json/ENG.json").then(function (treeData) {
+
+                data = treeData
+                // Assigns parent, children, height, depth
+                root = d3.hierarchy(data, function (d) {
+                    var node = d;
+                    while (true) {
+                        if (!node.children) {
+                            d.trueType = node.type;
+                            return []
+                        } else {
+                            var childDepth = node.children[0].game;
+                            if (state[childDepth] === -1) {
+                                return node.children
+                            } else {
+                                node = node.children[state[childDepth]];
+                            }
+                        }
+                    }
+                    return []
+                });
+                root.x0 = width / 2;
+                root.y0 = 0;
+
+                // Collapse after the second level
+                //root.children.forEach(collapse);
+
+                update(root);
+
+                // Collapse the node and all it's children
+                // function collapse(d) {
+                //   if(d.children) {
+                //     d._children = d.children
+                //     d._children.forEach(collapse)
+                //     d.children = null
+                //   }
+                // }
+
+
+            }
+        );
+
+
+    </script>
+
+</body>
+</html>
+
