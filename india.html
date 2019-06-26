@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.min.css" />
-    <link rel="stylesheet" href="/static/css/base.css"/>
+    <link rel="stylesheet" href="../base.css"/>
 
 
 
@@ -464,7 +464,7 @@
         }
 
 
-        d3.json("/ptv/results?team=IND").then(function (treeData) {
+        d3.json("../json/india").then(function (treeData) {
 
                 data = treeData
                 // Assigns parent, children, height, depth
