@@ -59,7 +59,7 @@
         article from years ago.</p>
 
     <h4>Set match results</h4>
-    <div class="d-flex flex-row justify-content-around flex-wrap my-4">
+    <div id="match-box" class="d-flex flex-row justify-content-around flex-wrap my-4">
         
             <div class="my-1 mx-2">
                 <button class="btn btn-sm btn-light mr-0" id="res-0-0">NZ</button>
@@ -176,23 +176,7 @@
                     state[depth] = index;
                 }
 
-                root = d3.hierarchy(data, function (d) {
-                    var node = d;
-                    while (true) {
-                        if (!node.children) {
-                            d.trueType = node.type;
-                            return []
-                        } else {
-                            var childDepth = node.children[0].game;
-                            if (state[childDepth] === -1) {
-                                return node.children
-                            } else {
-                                node = node.children[state[childDepth]];
-                            }
-                        }
-                    }
-                    return []
-                });
+                root = d3.hierarchy(data, childFunction);
                 root.x0 = width / 2;
                 root.y0 = 0;
 
@@ -208,7 +192,7 @@
         var data = {};
         var container = document.getElementById("svg-container");
         var clientWidth = container.clientWidth
-        var margin = {top: 20, right: 90, bottom: 30, left: 90},
+        var margin = {top: 20, right: 50, bottom: 30, left: 50},
             width = clientWidth - margin.left - margin.right,
             height = 2000 - margin.top - margin.bottom;
 
@@ -238,8 +222,53 @@
             spacing = 120,
             root;
 
+        function redraw() {
+            console.log("RESIZE");
+
+            var clientWidth = document.getElementById("match-box").clientWidth;
+            console.log("RESIZE", clientWidth);
+
+            width = clientWidth - margin.left - margin.right;
+            height = 2000 - margin.top - margin.bottom;
+            console.log(width);
+
+            svgBase
+                .attr("width", width + margin.right + margin.left)
+                .attr("height", height);
+
+            root = d3.hierarchy(data, childFunction);
+            root.x0 = width / 2;
+            root.y0 = 0;
+
+            // Collapse after the second level
+            //root.children.forEach(collapse);
+            treemap.size([width, height]);
+
+            update(root);
+        }
+
+        window.addEventListener("resize", redraw);
+
         // declares a tree layout and assigns the size
         var treemap = d3.cluster().size([width, height]);
+
+        function childFunction(d) {
+            var node = d;
+            while (true) {
+                if (!node.children) {
+                    d.trueType = node.type;
+                    return []
+                } else {
+                    var childDepth = node.children[0].game;
+                    if (state[childDepth] === -1) {
+                        return node.children
+                    } else {
+                        node = node.children[state[childDepth]];
+                    }
+                }
+            }
+            return [];
+        }
 
         function update(source) {
 
@@ -287,6 +316,7 @@
                 });
 
             rowGroups.append('text')
+                .attr("class", "left")
                 .attr("dy", ".35em")
                 .attr("y", "-20")
                 .attr("x", "0")
@@ -295,6 +325,7 @@
                 });
 
             rowGroups.append('text')
+                .attr("class", "right")
                 .attr("text-anchor", "end")
                 .attr("dy", ".35em")
                 .attr("y", "-20")
@@ -302,6 +333,16 @@
                 .text(function (d) {
                     return d.game[1]
                 });
+
+            rows.select("path.rowlink")
+                .attr('d', function (d) {
+                    return `M 0 0 L ${width + margin.left + margin.right} 0`
+                });
+
+            rows.select("text.right")
+                .attr("x", width + margin.left + margin.right);
+
+
 
 
             // Assigns the x and y position for the nodes
@@ -484,23 +525,7 @@
 
                 data = treeData
                 // Assigns parent, children, height, depth
-                root = d3.hierarchy(data, function (d) {
-                    var node = d;
-                    while (true) {
-                        if (!node.children) {
-                            d.trueType = node.type;
-                            return []
-                        } else {
-                            var childDepth = node.children[0].game;
-                            if (state[childDepth] === -1) {
-                                return node.children
-                            } else {
-                                node = node.children[state[childDepth]];
-                            }
-                        }
-                    }
-                    return []
-                });
+                root = d3.hierarchy(data, childFunction);
                 root.x0 = width / 2;
                 root.y0 = 0;
 
